@@ -11,11 +11,11 @@ const User = sequelize.define("user", {
 const Basket = sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
-const Basket_goods = sequelize.define("basket_goods", {
+const Basket_products = sequelize.define("basket_products", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
-const Goods = sequelize.define("goods", {
+const Products = sequelize.define("products", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
@@ -32,7 +32,7 @@ const Brand = sequelize.define("brand", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
-const GoodsInfo = sequelize.define("goods_info", {
+const ProductsInfo = sequelize.define("products_info", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
@@ -45,23 +45,23 @@ const TypeBrand = sequelize.define("type_brand", {
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
-Basket.hasMany(Basket_goods);
-Basket_goods.belongsTo(Basket);
+Basket.hasMany(Basket_products);
+Basket_products.belongsTo(Basket);
 
-Type.hasMany(Goods);
-Goods.belongsTo(Type);
+Type.hasMany(Products);
+Products.belongsTo(Type);
 
-Brand.hasMany(Goods);
-Goods.belongsTo(Brand);
+Brand.hasMany(Products);
+Products.belongsTo(Brand);
 
-Goods.hasMany(GoodsInfo);
-GoodsInfo.belongsTo(Goods);
+Products.hasMany(ProductsInfo);
+ProductsInfo.belongsTo(Products);
 
-Goods.hasMany(Basket_goods);
-Basket_goods.belongsTo(Goods);
+Products.hasMany(Basket_products);
+Basket_products.belongsTo(Products);
 
-Goods.hasMany(GoodsInfo);
-GoodsInfo.belongsTo(Goods);
+Products.hasMany(ProductsInfo, { as: "productsInfo" });
+ProductsInfo.belongsTo(Products);
 
 Type.belongsToMany(Brand, { through: TypeBrand });
 Brand.belongsToMany(Type, { through: TypeBrand });
@@ -69,10 +69,10 @@ Brand.belongsToMany(Type, { through: TypeBrand });
 export default {
   User,
   Basket,
-  Basket_goods,
-  Goods,
+  Basket_products,
+  Products,
   Type,
   Brand,
-  GoodsInfo,
+  ProductsInfo,
   TypeBrand,
 };
