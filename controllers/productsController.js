@@ -73,7 +73,10 @@ class ProductsController {
     const { id } = req.params;
     const product = await models.Products.findOne({
       where: { id },
-      include: [{ model: models.ProductsInfo, as: "productsInfo" }],
+      include: [
+        { model: models.ProductsInfo, as: "productsInfo" },
+        { model: models.Notes, as: "notes", through: { attributes: [] } },
+      ],
     });
     return res.json(product);
   }
