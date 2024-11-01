@@ -80,6 +80,12 @@ class ProductsController {
     });
     return res.json(product);
   }
+  async delete(req,res,next){
+    //не забыть удалить файл из папки статик
+  }
+  async update(req,res,next){
+    //если обновляется картинка - удалить старую
+  }
 }
 
 export default new ProductsController();

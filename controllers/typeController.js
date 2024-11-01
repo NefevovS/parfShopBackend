@@ -11,6 +11,8 @@ class TypeController {
     const types = await models.Type.findAll();
     return res.json(types);
   }
+  async delete(req,res){}
+  async update(req,res){}
 }
 
 export default new TypeController();

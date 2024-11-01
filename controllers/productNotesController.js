@@ -11,6 +11,8 @@ class ProductNotesController {
     const productNote = await models.ProductNotes.findAll();
     return productNote.json(types);
   }
+  async delete(req,res){}
+  async update(req,res){}
 }
 
 export default new ProductNotesController();

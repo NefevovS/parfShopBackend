@@ -11,6 +11,8 @@ class NotesController {
     const types = await models.Notes.findAll();
     return res.json(types);
   }
+  async delete(req,res){}
+  async update(req,res){}
 }
 
 export default new NotesController();
